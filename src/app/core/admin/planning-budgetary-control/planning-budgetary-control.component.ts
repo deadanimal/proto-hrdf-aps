@@ -11,6 +11,7 @@ import am4themes_dataviz from "@amcharts/amcharts4/themes/dataviz";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import swal from "sweetalert2";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 export enum SelectionType {
   single = "single",
@@ -29,8 +30,14 @@ export class PlanningBudgetaryControlComponent implements OnInit, OnDestroy {
   // Chart
   private chart1: any;
 
+  //form
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+
   // Modal
   modalRef: BsModalRef;
+  modalRef1: BsModalRef;
   modalConfig = {
     keyboard: true,
     class: "modal-dialog-centered",
@@ -165,7 +172,11 @@ export class PlanningBudgetaryControlComponent implements OnInit, OnDestroy {
   ];
   SelectionType = SelectionType;
 
-  constructor(private zone: NgZone, private modalService: BsModalService) {
+  constructor(
+    private zone: NgZone,
+    private modalService: BsModalService,
+    private _formBuilder: FormBuilder
+  ) {
     this.temp = this.rows.map((prop, key) => {
       return {
         ...prop,
@@ -311,15 +322,25 @@ export class PlanningBudgetaryControlComponent implements OnInit, OnDestroy {
     this.modalRef.hide();
   }
 
-  entriesChange($event){
+  successSwal1(task) {
+    swal.fire({
+      title: "Success",
+      text: "Successfully " + task + "!",
+      type: "success",
+      buttonsStyling: false,
+      confirmButtonClass: "btn btn-success",
+    });
+    this.modalRef1.hide();
+  }
+
+  entriesChange($event) {
     this.entries = $event.target.value;
   }
   filterTable($event) {
     let val = $event.target.value;
-    this.temp = this.rows.filter(function(d) {
-
-      for(var key in d){
-        if(d[key].toLowerCase().indexOf(val) !== -1){
+    this.temp = this.rows.filter(function (d) {
+      for (var key in d) {
+        if (d[key].toLowerCase().indexOf(val) !== -1) {
           return true;
         }
       }
@@ -330,26 +351,47 @@ export class PlanningBudgetaryControlComponent implements OnInit, OnDestroy {
     this.activeRow = event.row;
   }
 
-  openModal(modalRef: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(modalRef, this.modalConfig);
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: "modal-lg" });
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ["", Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ["", Validators.required],
+    });
+  }
+
+  openModal1(template: TemplateRef<any>) {
+    this.modalRef1 = this.modalService.show(template, { class: "modal-lg" });
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ["", Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ["", Validators.required],
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ["", Validators.required],
+    });
   }
 
   delete() {
-    swal.fire({
-      title: "Confirmation",
-      text: "Are you sure want to delete this data?",
-      type: "info",
-      buttonsStyling: false,
-      confirmButtonClass: "btn btn-info",
-      confirmButtonText: "Confirm",
-      showCancelButton: true,
-      cancelButtonClass: "btn btn-danger",
-      cancelButtonText: "Cancel"
-    }).then((result) => {
-      if (result.value) {
-        this.doneDelete()
-      }
-    })
+    swal
+      .fire({
+        title: "Confirmation",
+        text: "Are you sure want to delete this data?",
+        type: "info",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-info",
+        confirmButtonText: "Confirm",
+        showCancelButton: true,
+        cancelButtonClass: "btn btn-danger",
+        cancelButtonText: "Cancel",
+      })
+      .then((result) => {
+        if (result.value) {
+          this.doneDelete();
+        }
+      });
   }
 
   doneDelete() {
@@ -359,7 +401,7 @@ export class PlanningBudgetaryControlComponent implements OnInit, OnDestroy {
       type: "success",
       buttonsStyling: false,
       confirmButtonClass: "btn btn-success",
-      confirmButtonText: "Close"
-    })
+      confirmButtonText: "Close",
+    });
   }
 }

@@ -20,6 +20,12 @@ import { ProductionCostingMaterialLedgerComponent } from './production-costing-m
 import { ClaimComponent } from './claim/claim.component';
 import { Report123Component } from './report123/report123.component';
 import { ProcurementNoticeComponent } from './procurement-notice/procurement-notice.component';
+import { StrategicSourcingComponent } from './strategic-sourcing/strategic-sourcing.component';
+import { ProcurementManagementComponent } from './procurement-management/procurement-management.component';
+import { TenderManagementComponent } from './tender-management/tender-management.component';
+import { InvestmentComponent } from './investment/investment.component';
+import { FixedAssetRegistrationComponent } from './fixed-asset-registration/fixed-asset-registration.component';
+import { FixedAssetDepreciationDisposalComponent } from './fixed-asset-depreciation-disposal/fixed-asset-depreciation-disposal.component';
 
 export const AdminRoutes: Routes = [
     {
@@ -58,6 +64,23 @@ export const AdminRoutes: Routes = [
                 component: FixedAssetComponent
             },
             {
+                path: 'fixed-asset-management',
+                children: [
+                    {
+                        path: 'asset-registration',
+                        component: FixedAssetRegistrationComponent
+                    },
+                    {
+                        path: 'asset-depreciation-disposal',
+                        component: FixedAssetDepreciationDisposalComponent
+                    }
+                ]
+            },
+            {
+                path: 'investment',
+                component: InvestmentComponent
+            },
+            {
                 path: 'statutory-reporting',
                 component: ReportComponent
             },
@@ -75,7 +98,20 @@ export const AdminRoutes: Routes = [
                     {
                         path: 'notice',
                         component: ProcurementNoticeComponent
-                    }
+                    },
+                    {
+                        path: 'strategic-sourcing',
+                        component: StrategicSourcingComponent
+                    },
+                    {
+                        path: 'procurement-management',
+                        component: ProcurementManagementComponent
+                    },
+                    {
+                        path: 'tender-management',
+                        component: TenderManagementComponent
+                    },
+
                 ]
             },
             {

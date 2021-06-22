@@ -5,6 +5,7 @@ import am4themes_spiritedaway from "@amcharts/amcharts4/themes/spiritedaway";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import swal from "sweetalert2";
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Template } from "@angular/compiler/src/render3/r3_ast";
 
 export enum SelectionType {
   single = "single",
@@ -364,8 +365,8 @@ export class GeneralLedgerComponent implements OnInit, OnDestroy {
     this.activeRow = event.row;
   }
 
-  openModal(modalRef: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(modalRef, this.modalConfig);
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,{ class: 'modal-xl'});
   }
 
   delete() {
@@ -395,5 +396,16 @@ export class GeneralLedgerComponent implements OnInit, OnDestroy {
       confirmButtonClass: "btn btn-success",
       confirmButtonText: "Close"
     })
+  }
+
+  notification() {
+    swal.fire({
+      title: "Success",
+      text: "Successfully sent!",
+      type: "success",
+      buttonsStyling: false,
+      confirmButtonClass: "btn btn-success",
+    });
+    this.modalRef.hide();
   }
 }

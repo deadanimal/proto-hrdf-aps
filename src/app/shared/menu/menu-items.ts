@@ -67,12 +67,31 @@ export const ROUTES: RouteInfo[] = [
     type: 'link',
     icontype: 'fas fa-file-invoice text-dark'
   },
+  // {
+  //   path: '/admin/fixed-asset',
+  //   title: 'Fixed Asset',
+  //   type: 'link',
+  //   icontype: 'fas fa-screwdriver text-dark'
+  // },
   {
-    path: '/admin/fixed-asset',
-    title: 'Fixed Asset',
+    path: '/admin/fixed-asset-management',
+    title: ' Fixed Asset Management',
+    type: 'sub',
+    icontype: 'fas fa-screwdriver text-dark',
+    collapse: 'fixed-asset-management',
+    isCollapsed: true,
+    children: [
+      { path: 'asset-registration', title: 'Assest Registration', type: 'link' },
+      { path: 'asset-depreciation-disposal', title: 'Asset Depreciation & Disposal', type: 'link' },
+    ]
+  },
+  {
+    path: '/admin/investment',
+    title: 'Investment',
     type: 'link',
-    icontype: 'fas fa-screwdriver text-dark'
-  },{
+    icontype: 'fas fa-chart-area text-dark'
+  },
+  {
     path: '/admin/statutory-reporting',
     title: 'Statutory Reporting',
     type: 'link',
@@ -87,8 +106,11 @@ export const ROUTES: RouteInfo[] = [
     isCollapsed: true,
     children: [
       { path: 'vendor-list', title: 'Vendor List', type: 'link' },
-      { path: 'analysis', title: 'Analysis', type: 'link' },
-      //{ path: 'notice', title: 'Notice', type: 'link' }
+      // { path: 'analysis', title: 'Analysis', type: 'link' },
+      // { path: 'notice', title: 'Notice', type: 'link' },
+      { path: 'strategic-sourcing', title: 'Stategic Sourcing', type: 'link' },
+      { path: 'procurement-management', title: 'Procurement Management', type: 'link' },
+      { path: 'tender-management', title: 'Tender Management', type: 'link' }
     ]
   },
   {

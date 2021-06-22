@@ -275,8 +275,17 @@
       <div class="card">
         <div class="card-header bg-secondary">
           <div class="row align-items-center">
-            <div class="col">
+            <div class="col-md-6">
               <h5 class="h3 mt-2 mb-0">List of Vendor</h5>
+            </div>
+            <div class="col-md-6 text-right">
+              <button
+                class="btn btn-default"
+                type="button"
+                (click)="openModal(addNew)"
+              >
+                Add New
+              </button>
             </div>
           </div>
         </div>
@@ -474,9 +483,118 @@
               id="scale3"
             >
               <option selected>Choose</option>
-              <option value="1">Small</option>
-              <option value="2">Big</option>
-              <option value="3">Medium</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-4">
+            <label for="experience">Experience</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="eg 7 years"
+              id="experience"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="button" (click)="successSwal('saved')">
+      Save
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="modalRef.hide()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #addNew>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Add New Vendor
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-4">
+            <label for="vendorid">Vendor ID</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="eg 23"
+              id="vendorid"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-4">
+            <label for="companyname2">Company Name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="eg Maju"
+              id="companyname2"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-4">
+            <label for="category3">Category</label>
+            <select
+              class="form-control"
+              id="category3"
+            >
+              <option selected>Choose</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-4">
+            <label for="scale3">Scale</label>
+            <select
+              class="form-control"
+              id="scale3"
+            >
+              <option selected>Choose</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
             </select>
           </div>
         </div>

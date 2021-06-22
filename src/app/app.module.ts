@@ -42,7 +42,7 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent, 
     AdminLayoutComponent, 
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   providers: [
     /* Uncomment this to use interceptor

@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 
+import { CdkStepperModule } from "@angular/cdk/stepper";
+import { MatStepperModule } from "@angular/material/stepper"; 
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as mapbox from 'mapbox-gl';
@@ -41,6 +43,12 @@ import { ProductionCostingMaterialLedgerComponent } from './production-costing-m
 import { ClaimComponent } from './claim/claim.component';
 import { Report123Component } from './report123/report123.component';
 import { ProcurementNoticeComponent } from './procurement-notice/procurement-notice.component';
+import { StrategicSourcingComponent } from './strategic-sourcing/strategic-sourcing.component';
+import { ProcurementManagementComponent } from './procurement-management/procurement-management.component';
+import { TenderManagementComponent } from './tender-management/tender-management.component';
+import { InvestmentComponent } from './investment/investment.component';
+import { FixedAssetRegistrationComponent } from './fixed-asset-registration/fixed-asset-registration.component';
+import { FixedAssetDepreciationDisposalComponent } from './fixed-asset-depreciation-disposal/fixed-asset-depreciation-disposal.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +72,13 @@ import { ProcurementNoticeComponent } from './procurement-notice/procurement-not
     ProductionCostingMaterialLedgerComponent,
     ClaimComponent,
     Report123Component,
-    ProcurementNoticeComponent
+    ProcurementNoticeComponent,
+    StrategicSourcingComponent,
+    ProcurementManagementComponent,
+    TenderManagementComponent,
+    InvestmentComponent,
+    FixedAssetRegistrationComponent,
+    FixedAssetDepreciationDisposalComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +93,10 @@ import { ProcurementNoticeComponent } from './procurement-notice/procurement-not
     ReactiveFormsModule,
     LoadingBarModule,
     NgxDatatableModule,
-    RouterModule.forChild(AdminRoutes)
+    RouterModule.forChild(AdminRoutes),
+    MatStepperModule,
+    CdkStepperModule,
+    HttpClientModule,
   ]
 })
 export class AdminModule { }
